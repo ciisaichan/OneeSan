@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>关于</title>
+    {{template "comm/head.html" .}}
+
+</head>
+
+<body>
+{{template "comm/navbar.html" .}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="margin: 15px auto;">
+            <div class="alerts">
+
+            </div>
+            <h3>
+                关于
+            </h3>
+            <p class="lead">
+                本网站借鉴于<strong>随机色图</strong>网站开发，每访问一次网站可以随机获取10张插画<small>（没有R18）</small>，也可以下拉到底部自动加载。
+            </p>
+            <div>
+                <div>
+                    算是自己初次开发的Web项目，可能会有一些问题QAQ
+                </div>
+                <div>
+                    由于自己比较喜欢大姐姐w，所以网站名称叫OneeSan<small>（日语中姐姐的罗马音）</small>
+                </div>
+                <br/>
+                <div>
+                    可以在网站顶部的菜单栏输入P站<small>（Pixiv）</small>的插画ID，把你喜欢的插画添加到网站数据库，之后就会随机推送，要求只能是普通的插画<small>（多P图取第一张）</small>，目前不能接受动图，收藏数{{.books_limit}}或以上，包含所需关键词，不能是R18或R18G，否则都不能成功添加。
+                </div>
+                <br/>
+                <div>
+                    封禁的关键词
+                    <span class="badge badge-secondary">R-18</span>
+                    <span class="badge badge-secondary">R-18G</span>
+                    {{range $tag := .baned_tags}}
+                        <span class="badge badge-secondary">{{$tag}}</span>{{end}}
+                </div>
+                <div>
+                    需要的关键词
+                    {{range $tag := .allow_tags}}
+                        <span class="badge badge-secondary">{{$tag}}</span>{{end}}
+                </div>
+                <div>
+                    <small>（只需满足任意一个即可）</small>
+                </div>
+                <br/>
+                <div>
+                    10000张插画纪念~数据库公开: <a href="static/other/10000_oneesan_db.csv">10000_oneesan_db.csv</a>
+                </div>
+            </div>
+            <br/>
+            <h3>
+                声明
+            </h3>
+            <div>
+                <div>
+                    1) <u>插画版权归插画师或作者本人所有。</u>
+                </div>
+                <div>
+                    2) <u>本站的插画为随机收集或访问者提供，仅供参考，会尽可能避免收集R18<small>（完全裸露敏感部位）</small>的插画，但大多数也包含性暗示。</u>
+                </div>
+                <div>
+                    3) <u>请根据自身情况<small>（心理或年龄）</small>判断是否进行浏览，保持节制。</u>
+                </div>
+                <div>
+                    4) <u>请不要滥用本站数据，造成的后果请自行承担。</u>
+                </div>
+            </div>
+            <br/>
+            <address>
+                <strong>联系 &amp; bug反馈</strong>
+            </address>
+            <div>
+                E-mail: ciisaichanw@gmail.com
+            </div>
+        </div>
+    </div>
+</div>
+{{template "comm/bodyjs.html" .}}
+</body>
+</html>

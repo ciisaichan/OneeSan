@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{.Title}}</title>
+    {{template "comm/head.html" .}}
+
+</head>
+
+<body>
+{{template "comm/navbar.html" .}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="margin: 15px auto;">
+            <div class="alerts">
+
+            </div>
+            <div class="jumbotron">
+                <h2>
+                    {{.Title}}
+                </h2>
+                <p>
+                    {{.Info}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{{template "comm/bodyjs.html" .}}
+</body>
+
+</html>

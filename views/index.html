@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OneeSan</title>
+    {{template "comm/head.html" .}}
+
+    <style>
+        .img-list {
+            overflow: hidden;
+        }
+
+        .img-list img {
+            width: 47%;
+            margin: 1% 1%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+{{template "comm/navbar.html" .}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="margin: 15px auto;">
+            <div class="alerts">
+
+            </div>
+            <div class="img-list">
+                {{range .ills}}
+                    <img alt="{{.Title}} [{{.Author}}]" src="{{.MasterUrl}}" onclick="openLink('{{.OriginalUrl}}')"
+                         class="img-thumbnail"/>{{end}}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    imgStatus.watch('.img-thumbnail', function (imgs) {
+        reList();
+    });
+
+    window.addEventListener('resize', function () {
+        reList();
+    });
+
+    function reList() {
+        waterfall('.img-list');
+    }
+
+    function openLink(url) {
+        window.open(url, '_blank').location;
+    }
+
+    setInterval("reList()", "1000");
+
+    var isWaiting = false;
+    var waitSwitch = false;
+    $(window).scroll(function () {
+        if ($(window).scrollTop() === $(document).height() - $(window).height()) {
+            if (!isWaiting) {
+                isWaiting = true;
+                waitSwitch = true;
+                addIllusts();
+            }
+            if (waitSwitch) {
+                waitSwitch = false;
+                setTimeout(function () {
+                    isWaiting = false;
+                }, 5000);
+            }
+        }
+    });
+
+    function addIllusts() {
+        $.getJSON('/api', function (result) {
+            var html_resultinfo = '';
+            if (result["error"] == 0) {
+                $.each(result["illusts"], function (i, item) {
+                    html_resultinfo += '<img alt="' + item["title"] + ' [' + item["author"] + ']" src="' + item["master_url"] + '" onclick="openLink(\'' + item["original_url"] + '\')" class="img-thumbnail"/>\n';
+                });
+                $('.img-list').append(html_resultinfo);
+            }
+        });
+    }
+
+</script>
+{{template "comm/bodyjs.html" .}}
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">OneeSan</a>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href=""
+                   id="navbarDropdownMenuLink" data-toggle="dropdown">其他</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/api" target="_blank">API</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href=""
+                   id="navbarDropdownMenuLink" data-toggle="dropdown">感谢</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="https://api.lolicon.app/setu/view.php" target="_blank">随机色图</a>
+                    <a class="dropdown-item" href="https://pixiv.cat/" target="_blank">Pixiv.cat</a>
+                    <a class="dropdown-item" href="https://api.imjad.cn/" target="_blank">imjad API</a>
+                </div>
+            </li>
+            <form class="input-group">
+                <input class="form-control" type="text" placeholder="输入P站插画ID或链接" id="illustid" />
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" id="addbtn" onclick="return postIllust()">
+                        添加
+                    </button>
+                </div>
+            </form>
+        </ul>
+        <ul class="navbar-nav ml-md-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="getDBCount()">插画数量 <span class="badge badge-secondary" id="dbcounts">{{.db_count}}</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about" target="_blank">关于&声明</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>

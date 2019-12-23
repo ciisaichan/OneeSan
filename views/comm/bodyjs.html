@@ -1,0 +1,73 @@
+<style>
+    .alerts {
+        position: fixed;
+        right: 6px;
+        z-index: 900;
+        width: 40%;
+    }
+</style>
+
+<script type="text/javascript">
+    function postIllust() {
+        $(function () {
+            var illustID = $("#illustid").val();
+            if (illustID != "") {
+                if (!isRealNum(illustID)) {
+                    var illURL = new URL(illustID)
+                    var searchParams = new URLSearchParams(illURL.search);
+                    var oid = searchParams.get('illust_id');
+                    if (oid == null) {
+                        var filen = illURL.pathname.split('/');
+                        var lid = filen[filen.length - 1];
+                        illustID = lid
+                    } else {
+                        illustID = oid
+                    }
+                    if(!isRealNum(illustID)) {
+                        BSAlert('插画链接格式不正确', 2);
+                        return
+                    }
+                }
+                $("#addbtn").attr({"disabled": "disabled"});
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/addillust',
+                    data: {"pid": illustID},
+                    success: function (data) {
+                        if (data == "ok")
+                            BSAlert('插画已添加至数据库 Thanks~', 1);
+                        else
+                            BSAlert('错误: ' + data, 3);
+                        $("#addbtn").removeAttr("disabled");
+                        $("#illustid").val('');
+                    }
+                });
+            } else {
+                BSAlert('请输入插画ID或链接', 2);
+            }
+        });
+        return false;
+    }
+    
+    function getDBCount() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/dbcount',
+            success: function (data) {
+                $("#dbcounts").html(data);
+            }
+        });
+
+    }
+
+    function isRealNum(val) {
+        if (val === "" || val == null) {
+            return false;
+        }
+        if (!isNaN(val)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
