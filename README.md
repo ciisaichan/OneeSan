@@ -15,4 +15,10 @@ https://api.lolicon.app/setu
 https://pixiv.cat/
 https://api.imjad.cn/
 ```
+### 库
+```
+https://github.com/astaxie/beego
+https://github.com/astaxie/beego/orm
+https://github.com/zyx4843/gojson
+```
 ------------
