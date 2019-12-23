@@ -17,8 +17,8 @@ https://api.imjad.cn/
 ```
 ### 库
 ```
-https://github.com/astaxie/beego
-https://github.com/astaxie/beego/orm
-https://github.com/zyx4843/gojson
+github.com/astaxie/beego
+github.com/astaxie/beego/orm
+github.com/zyx4843/gojson
 ```
 ------------
